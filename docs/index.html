@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -6,65 +7,58 @@
     <title>Khaled</title>
     <!-- استيراد مكتبة Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
-            overflow-x: hidden;
             color: #333;
-            
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        .container {
-    display: flex; /* تفعيل Flexbox */
-    flex-wrap: wrap; /* السماح بالتفاف العناصر إذا كانت المساحة غير كافية */
-    justify-content: space-around; /* توزيع العناصر بشكل متساوٍ */
-    padding: 10px;
-        }
-        @media (max-width: 768px) {
-    body {
-        font-size: 0.9rem; /* حجم أصغر للشاشات الصغيرة */
-    }
-}
-@media (max-width: 768px) {
-    .item {
-        flex: 1 1 100%; /* يجعل العناصر تأخذ العرض الكامل في الشاشات الصغيرة */
-    }
-}
+
         header {
             background: linear-gradient(90deg, #ff7b00, #ffcc00);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 20px 10px;
         }
+
         nav {
             background-color: #333;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             padding: 10px;
         }
+
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             padding: 10px 15px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
+
         nav a:hover {
             background-color: #ffcc00;
             transform: scale(1.1);
         }
+
         .container {
             padding: 20px;
-            display: none; /* إخفاء جميع الأقسام افتراضيًا */
+            display: none;
             animation-duration: 1s;
         }
+
         .container.active {
-            display: block; /* عرض القسم النشط فقط */
+            display: block;
             animation-name: fadeIn;
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -75,10 +69,12 @@
                 transform: translateY(0);
             }
         }
-        h2,h4,h5,h6 {
+
+        h2, h4, h5, h6 {
             color: #ff7b00;
             margin-bottom: 20px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -86,18 +82,22 @@
             background-color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         table th, table td {
             padding: 15px;
             text-align: center;
             border: 1px solid #ddd;
         }
+
         table th {
             background-color: #ff7b00;
             color: white;
         }
+
         table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         button {
             padding: 10px 20px;
             background-color: #ff7b00;
@@ -107,21 +107,63 @@
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
+
         button:hover {
             background-color: #ffcc00;
             transform: scale(1.1);
         }
+
         footer {
             background: linear-gradient(90deg, #ffcc00, #ff7b00);
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 10px 20px;
             margin-top: 20px;
         }
+
         .navigation-buttons {
             margin-top: 20px;
             display: flex;
             justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 5px 0;
+                text-align: center;
+            }
+
+            body {
+                font-size: 0.9rem;
+            }
+
+            .item {
+                flex: 1 1 100%;
+            }
+
+            button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            table th, table td {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
         }
         img{
             width: 30px;
@@ -133,6 +175,8 @@
             text-align: center;
         }
     </style>
+</head>
+
 </head>
 <body>
     <header class="animate_animated animate_fadeInDown">

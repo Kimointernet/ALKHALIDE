@@ -14,7 +14,24 @@
             background-color: #f9f9f9;
             overflow-x: hidden;
             color: #333;
+            
         }
+        .container {
+    display: flex; /* تفعيل Flexbox */
+    flex-wrap: wrap; /* السماح بالتفاف العناصر إذا كانت المساحة غير كافية */
+    justify-content: space-around; /* توزيع العناصر بشكل متساوٍ */
+    padding: 10px;
+        }
+        @media (max-width: 768px) {
+    body {
+        font-size: 0.9rem; /* حجم أصغر للشاشات الصغيرة */
+    }
+}
+@media (max-width: 768px) {
+    .item {
+        flex: 1 1 100%; /* يجعل العناصر تأخذ العرض الكامل في الشاشات الصغيرة */
+    }
+}
         header {
             background: linear-gradient(90deg, #ff7b00, #ffcc00);
             color: white;

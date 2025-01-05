@@ -211,106 +211,194 @@
             <p>. هواتف Huawei وHonor. </p><br> <h6 class="animate_animated animate_bounceIn">4.شاومي (Xiaomi):</h6>
             <p>. هواتف Mi وRedmi وPoco.</p>
         
-        <div class="navigation-buttons">
-            <button onclick="showSection('home')">السابق</button>
-            <button onclick="showSection('services')">التالي</button>
-        </div>
+            <div class="navigation-buttons">
+                <button onclick="showSection('home')">السابق</button>
+                <button onclick="showSection('services')">التالي</button>
+            </div>
     </div>
 
     <!-- قسم الخدمات -->
-    <div id="services" class="container">
-        <h2 class="animate_animated animate_bounceIn">خدمات الإنترنت</h2>
+<div id="services" class="container">
+    <h2 class="animate_animated animate_bounceIn">خدمات الإنترنت</h2>
+
+    <button onclick="enableEditMode()">تعديل الأسعار</button>
+    <input type="password" id="adminPassword" placeholder="أدخل رمز الحماية" style="display: none;" onkeyup="checkPassword()">
+    
+    <!-- جدول باقات الإنترنت من Alfa -->
+    <h3>باقات الإنترنت من Alfa</h3>
+    <table id="alfaTable">
+        <tr>
+            <th>U_SHARE</th>
+            <th>السعر (ليرة)</th>
+            <th>تحرير</th>
+        </tr>
+        <tr>
+            <td>5 جيجابايت</td>
+            <td contenteditable="false">450,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>10 جيجابايت</td>
+            <td contenteditable="false">580,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>15 جيجابايت</td>
+            <td contenteditable="false">700,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>20 جيجابايت</td>
+            <td contenteditable="false">850,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>30 جيجابايت</td>
+            <td contenteditable="false">1,100,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+    </table>
+
+    <!-- جدول باقات GIFT -->
+    <h3>GIFT </h3>
+    <table id="giftTable">
+        <tr>
+            <th>GIFT</th>
+            <th>السعر (ليرة)</th>
+            <th>تحرير</th>
+        </tr>
+        <tr>
+            <td>6 جيجابايت</td>
+            <td contenteditable="false">850,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>10 جيجابايت</td>
+            <td contenteditable="false">1,050,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>20 جيجابايت</td>
+            <td contenteditable="false">1,300,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>30 جيجابايت</td>
+            <td contenteditable="false">1,550,000L.L</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+    </table>
+
+    <!-- جدول باقات MTC -->
+    <h3>MTC من Touch</h3>
+    <table id="mtcTable">
+        <tr>
+            <th>MTC,TOUCH</th>
+            <th>السعر (دولار)</th>
+            <th>تحرير</th>
+        </tr>
+        <tr>
+            <td>6 جيجابايت</td>
+            <td contenteditable="false">8.5$</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>10 جيجابايت</td>
+            <td contenteditable="false">11$</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>20 جيجابايت</td>
+            <td contenteditable="false">13$</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+        <tr>
+            <td>30 جيجابايت</td>
+            <td contenteditable="false">16$</td>
+            <td><button class="editButton" onclick="editPrice(this)">✏️</button></td>
+        </tr>
+    </table>
+    <div class="navigation-buttons">
+        <button onclick="showSection('products')">السابق</button>
+        <button onclick="showSection('contact')">التالي</button>
+    </div>
+
+     
+</div>
+
+<script>
+    const correctPassword = "admin1234"; // استبدل هذا بكلمة مرورك
+    let editModeEnabled = false;
+
+    function enableEditMode() {
+        document.getElementById("adminPassword").style.display = "inline";
+    }
+
+    function checkPassword() {
+        const password = document.getElementById("adminPassword").value;
+        if (password === correctPassword) {
+            editModeEnabled = true;
+            alert("تم تفعيل وضع التعديل!");
+            document.getElementById("adminPassword").style.display = "none";
+        } else {
+            editModeEnabled = false;
+        }
+    }
+
+    function editPrice(button) {
+        if (!editModeEnabled) {
+            alert("يجب إدخال كلمة المرور أولاً!");
+            return;
+        }
+
+        const cell = button.parentElement.previousElementSibling;
+        cell.contentEditable = cell.isContentEditable ? "false" : "true";
+        button.textContent = cell.isContentEditable ? "✔️" : "✏️";
+
+        if (!cell.isContentEditable) {
+            savePrices();
+        }
+    }
+
+    function savePrices() {
+        const tables = ["alfaTable", "giftTable", "mtcTable"];
+        const prices = {};
+
+        tables.forEach((tableId) => {
+            const table = document.getElementById(tableId);
+            const rows = table.querySelectorAll("tr");
+
+            prices[tableId] = [];
+            rows.forEach((row, index) => {
+                if (index === 0) return; // تخطي العنوان
+                const priceCell = row.cells[1];
+                prices[tableId].push(priceCell.textContent.trim());
+            });
+        });
+
+        localStorage.setItem("prices", JSON.stringify(prices));
+        alert("تم حفظ التعديلات!");
+    }
+
+    function loadPrices() {
+        const savedPrices = JSON.parse(localStorage.getItem("prices"));
+        if (!savedPrices) return;
+
+        Object.keys(savedPrices).forEach((tableId) => {
+            const table = document.getElementById(tableId);
+            const rows = table.querySelectorAll("tr");
+
+            savedPrices[tableId].forEach((price, index) => {
+                rows[index + 1].cells[1].textContent = price; // تخطي العنوان
+            });
+        });
+    }
+
+    // تحميل الأسعار المحفوظة عند فتح الصفحة
+    window.onload = loadPrices;
+</script>
+
         
-        <!-- جدول باقات الإنترنت -->
-        <h3>باقات الإنترنت من Alfa</h3>
-        <table>
-            <tr>
-                <th> U_SHARE</th>
-                <th>السعر (ليرة)</th>
-            </tr>
-            <tr>
-                <td>5 جيجابايت</td>
-                <td>450,000L.L</td>
-            </tr>
-            <tr>
-                <td>10 جيجابايت</td>
-                <td>580,000L.L</td>
-            </tr>
-            <tr>
-                <td>15 جيجابايت</td>
-                <td>700,000L.L</td>
-            </tr>
-            <tr>
-                <td>20 جيجابايت</td>
-                <td>850,000L.L</td>
-            </tr>
-            <tr>
-                <td>30 جيجابايت</td>
-                <td>1,100,000L.L</td>
-            </tr>
-        </table>
-
-        <h3 >خدمة U-Share</h3>
-        <p>تتيح مشاركة الباقات مع الآخرين.</p>
-        <p><strong>طريقة الاشتراك:</strong> إرسال "ADD USER" عبر 1050.</p>
-        
-
-        <!-- جدول باقات Touch -->
-        <h3>Alfa</h3>
-        <table>
-            <tr>
-                <th>GIFT</th>
-                <th>السعر (ليرة)</th>
-            </tr>
-            <tr>
-                <td>6 جيجابايت</td>
-                <td>850,000L.L</td>
-            </tr>
-            <tr>
-                <td>10 جيجابايت</td>
-                <td>1,050,000L.L</td>
-            </tr>
-            <tr>
-                <td>20 جيجابايت</td>
-                <td>1,300,000L.L</td>
-            </tr>
-            <tr>
-                <td>30 جيجابايت</td>
-                <td>1,550,000L.L</td>
-            </tr>
-        </table>
-        <h3>MTC</h3>
-        <table>
-            <tr>
-                <th>MTC,TOUCH</th>
-                <th>السعر (دولار)</th>
-            </tr>
-            <tr>
-                <td>6 جيجابايت</td>
-                <td>8,5$</td>
-            </tr>
-            <tr>
-                <td>10 جيجابايت</td>
-                <td>11$</td>
-            </tr>
-            <tr>
-                <td>20 جيجابايت</td>
-                <td>13$</td>
-            </tr>
-            <tr>
-                <td>30 جيجابايت</td>
-                <td>16$</td>
-            </tr>
-            <tr>
-                <td>40 جيجابايت</td>
-                <td>20$</td>
-            </tr>
-        </table>
-
-        <div class="navigation-buttons">
-            <button onclick="showSection('products')">السابق</button>
-            <button onclick="showSection('contact')">التالي</button>
-        </div>
     </div>
 
     <!-- قسم الاتصال -->
@@ -323,13 +411,15 @@
                     <li>PHONE:<a href="tel:+96170304667" style="color: #ff5733;">+96170304667</a><img src="https://i.imgur.com/5cs7KtL.jpeg" alt="image"></li>
                 
             
+    
 
         </form>
-        <div class="navigation-buttons">
-            <button onclick="showSection('services')">السابق</button>
-            <button onclick="showSection('home')">الرئيسية</button>
-        </div>
+      
+    <div class="navigation-buttons">
+        <button onclick="showSection('services')">السابق</button>
+        <button onclick="showSection('home')">الرئيسية</button>
     </div>
+</div>
 
     <footer>
         <p class="animate_animated animate_fadeInUp">© 2024 جميع الحقوق محفوظة -By Kamal al dannawi</p>
